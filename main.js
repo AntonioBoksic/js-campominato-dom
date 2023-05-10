@@ -4,6 +4,9 @@ const centerContainer = document.getElementById("centerContainer");
 // creazione bottone
 const buttonPlay = document.getElementById("buttonPlay");
 
+// creo variaile dove tenere conto dei click fatti
+let punteggio = 0;
+
 // quando clicco bottone:
 buttonPlay.addEventListener("click",
     function() {
@@ -21,6 +24,8 @@ buttonPlay.addEventListener("click",
         bombsArray = createNumRandomOrderArr(1,16)
         console.log(bombsArray);
         
+        
+
         // FOR PER CREAZIONE/INSERIMENTO/CLICK QUADRATI
         for (let i = 1; i <= 100; i++) {
             
@@ -36,21 +41,37 @@ buttonPlay.addEventListener("click",
             // rendo cliccabile il quadrato
             square.addEventListener("click",
                 function() {
+
                     if (bombsArray.includes(i)) {
                 square.classList.add("red")
                 alert("hai perso")
-                    } else {
+                    } 
+                    else {
                 // diventa blu quando lo clicco
                 square.classList.add("blue")
+                // ogni volta che clicco un blu faccio un punto e lo metto nella variabile "punteggio"
+                punteggio = punteggio +1
                     }
                 // stampo in console quadrato cliccato
                 console.log(square.innerHTML)
+
+                // stampo in console punteggio
+
+                console.log(`il tuo punteggio è ${punteggio}`)
+
+
+                if ( punteggio === 5 ) {alert("hai vinto")}
                 }
+
+                
+
             );
             
         };
 }
 );
+
+console.log(`il tuo punteggio è ${punteggio}`)
 
 
 // FUNZIONI 
