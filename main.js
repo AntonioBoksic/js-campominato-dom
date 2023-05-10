@@ -13,6 +13,14 @@ buttonPlay.addEventListener("click",
         squaresContainer.classList.add("squaresContainer");
         centerContainer.append(squaresContainer);
         
+
+        //SECONDA PARTE ESERCIZIO
+        //CREAZIONE 16 BOMBE
+        //CREARE UN ARRAY DI 16 NUMERI CASUALI
+        let bombsArray = [];
+        bombsArray = createNumRandomOrderArr(1,16)
+        console.log(bombsArray);
+        
         // FOR PER CREAZIONE/INSERIMENTO/CLICK QUADRATI
         for (let i = 1; i <= 100; i++) {
             
@@ -28,23 +36,20 @@ buttonPlay.addEventListener("click",
             // rendo cliccabile il quadrato
             square.addEventListener("click",
                 function() {
+                    if (bombsArray.includes(i)) {
+                square.classList.add("red")
+                alert("hai perso")
+                    } else {
                 // diventa blu quando lo clicco
                 square.classList.add("blue")
+                    }
                 // stampo in console quadrato cliccato
                 console.log(square.innerHTML)
                 }
             );
             
         };
-
-        //SECONDA PARTE ESERCIZIO
-        //CREAZIONE 16 BOMBE
-        //CREARE UN ARRAY DI 16 NUMERI CASUALI
-        let bombsArray = [];
-        bombsArray = createNumRandomOrderArr(1,16)
-        console.log(bombsArray);
-
-    }
+}
 );
 
 
@@ -67,7 +72,7 @@ function createNumRandomOrderArr (min, max) {
     // finchè la lungheza dell'array è minore al "max" selezionato
     while (intArr.length < max) {
         // crea numero random tra min e numero quadrati
-        const nuovoNum = RandomNumMinMax(min, 99);
+        const nuovoNum = RandomNumMinMax(min, 100);
         // se il numero è presente nell'array non fare nulla
         if(intArr.includes(nuovoNum)){
         // se il numero NON è presente nell'array pushalo dentro 
@@ -82,5 +87,3 @@ function createNumRandomOrderArr (min, max) {
 function RandomNumMinMax (numMin, numMax) {
     return Math.floor(Math.random() * (numMax - numMin + 1) + numMin)
  }
-
- //console.log(RandomNumMinMax(1,3));
